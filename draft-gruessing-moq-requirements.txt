@@ -5,11 +5,11 @@
 MOQ Mailing List                                            J. Gruessing
 Internet-Draft                               Nederlandse Publieke Omroep
 Intended status: Informational                                S. Dawkins
-Expires: 30 December 2022                            Tencent America LLC
-                                                            28 June 2022
+Expires: 2 January 2023                              Tencent America LLC
+                                                             1 July 2022
 
 
-   Media Over QUIC - Use Cases and Considerations for Media Transport
+    Media Over QUIC - Use Cases and Requirements for Media Transport
                             Protocol Design
                 draft-gruessing-moq-requirements-latest
 
@@ -19,8 +19,8 @@ Abstract
    IETF community under the banner of "Media Over QUIC", provides
    analysis about those use cases, recommends a subset of use cases that
    cover live media ingest, syndication, and streaming for further
-   exploration, and describes considerations that should guide the
-   design of protocols to satisfy these use cases.
+   exploration, and describes requirements that should guide the design
+   of protocols to satisfy these use cases.
 
 Note to Readers
 
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 30 December 2022.
+   This Internet-Draft will expire on 2 January 2023.
 
 Copyright Notice
 
@@ -72,8 +72,7 @@ Table of Contents
      1.2.  Why QUIC For Media?
    2.  Terminology
      2.1.  The Many Meanings of "Media Over QUIC"
-     2.2.  Media Transport Protoccol
-     2.3.  Latency Requirement Categories
+     2.2.  Latency Requirement Categories
    3.  Prior and Existing Specifications
      3.1.  QRT: QUIC RTP Tunnelling
      3.2.  RTP over QUIC
@@ -98,19 +97,7 @@ Table of Contents
      5.1.  Analysis for Interactive Use Cases
      5.2.  Analysis for Live Media Use Cases
      5.3.  Analysis for On-Demand Use Cases
-   6.  Considerations for Protocol Work
-     6.1.  Here Be Dragons
-     6.2.  Codec Agility
-     6.3.  Support an Appropriate Range of Latencies
-     6.4.  Migration of Sessions
-     6.5.  Appropriate Congestion Control
-     6.6.  Support Lossless and Lossy Media Transport
-     6.7.  Flow Directionality
-     6.8.  WebTransport
-     6.9.  Authentication
-     6.10. Considerations Implying QUIC Extensions
-       6.10.1.  NAT Traversal
-       6.10.2.  Multicast
+   6.  Requirements for Protocol Work
    7.  IANA Considerations
    8.  Security Considerations
    9.  Informative References
@@ -123,8 +110,8 @@ Table of Contents
    IETF community under the banner of "Media Over QUIC", provides
    analysis about those use cases, recommends a subset of use cases that
    cover live media ingest, syndication, and streaming for further
-   exploration, and describes considerations that should guide the
-   design of protocols to satisfy these use cases.
+   exploration, and describes requirements that should guide the design
+   of protocols to satisfy these use cases.
 
 1.1.  For The Impatient Reader
 
@@ -132,7 +119,7 @@ Table of Contents
       Section 5, rather than on interactive media use cases or on-demand
       use cases.
    *  The reasoning behind this proposal can be found in Section 5.1.
-   *  The considerations for protocol work to satisfy the proposed use
+   *  The requirements for protocol work to satisfy the proposed use
       cases can be found in Section 6.
 
    Most of the rest of this document provides background for these
@@ -211,8 +198,8 @@ Table of Contents
       HTTP/3 payload
    *  any kind of media carried indirectly over the QUIC protocol, as a
       WebTransport payload
-   *  the encapsulation of any Media Transport Protocol (Section 2.2) in
-      a QUIC payload
+   *  the encapsulation of any Media Transport Protocol in a QUIC
+      payload
    *  an IETF mailing list ([MOQ-ml]), which was requested "... for
       discussion of video ingest and distribution protocols that use
       QUIC as the underlying transport", although discussion of other
@@ -227,57 +214,30 @@ Table of Contents
    [AVTCORE-2022-02], although no drafts in this space have yet been
    adopted by the AVTCORE working group.
 
-2.2.  Media Transport Protoccol
+2.2.  Latency Requirement Categories
 
-   This document describes considerations for work on extensions to
-   existing "Media Transport Protocols" or creation of new "Media
-   Transport Protocols".
-
-   Within this document, we use the term "Media Transport Protocol" to
-   describe the protocol of interest.  This is easier to understand if
-   the reader assumes that we are talking about a protocol stack that
-   looks something like this:
-
-                  Media
-       ---------------------------
-              Media Format
-       ---------------------------
-       Media Transport Protocol(s)
-       ---------------------------
-                  QUIC
-
-   where "Media Format" would be something like RTP payload formats or
-   ISOBMFF [ISOBMFF], and "Media Transport Protocol" would be something
-   like RTP or HTTP.  Not all possible proposals for "Media Over QUIC"
-   follow this model, but for the ones that do, it seems useful to have
-   names for "the protocol layers beteern Media and QUIC".
-
-   It is worth noting explicitly that the "Media Transport Protocol"
-   layer might include more than one protocol.  For example, a new Media
-   Transport Protocol might be defined to run over HTTP, or even over
-   WebTransport and HTTP.
-
-2.3.  Latency Requirement Categories
-
-   Within this document, we extend the latency requirement categories
-   for streaming media described in
-   [I-D.draft-ietf-mops-streaming-opcons]:
+   }The "Operational Considerations for Streaming Media" document
+   ([I-D.draft-ietf-mops-streaming-opcons]) described a range of
+   latencies of interest to streaming media providers, as
 
    *  ultra low-latency (less than 1 second)
    *  low-latency live (less than 10 seconds)
    *  non-low-latency live (10 seconds to a few minutes)
    *  on-demand (hours or more)
 
-   These latency bands were appropriate for streaming media, which was
-   the target for [I-D.draft-ietf-mops-streaming-opcons], but some
-   interactive media may have requirements that are significantly less
-   than "ultra-low latency".  Within this document, we are also using
+   Because the IETF Media Over QUIC community now expresses interest in
+   interactive media Section 4.1 and live media Section 4.2} use cases
+   will have requirements that are significantly less than the
+   "streaming media"-defined "ultra-low latency".
+
+   Within this document, we are using
 
    *  near real-time (less than 50 ms)
    *  Ull-200 (less than 200 ms)
 
    Perhaps obviously, these last two latency bands are the shortened
    form of "ultra-low latency - 50 ms" and "ultra-low-latency - 200 ms".
+
    Perhaps less obviously, bikeshedding on better names and more useful
    values is welcomed.
 
@@ -674,158 +634,9 @@ Table of Contents
    "Media Over QUIC" space, but as new protocols come into being, they
    may very well be taken up for these use cases as well.
 
-6.  Considerations for Protocol Work
+6.  Requirements for Protocol Work
 
-   Even a cursory examination of the existing proposals listed in
-   Section 3 shows that there are fundamental differences in the
-   approaches being used.  This sction is intended to "up-level" the
-   conversation beyond specific protocols, so that we can more likely
-   agree on what is important for protocol design work.
-
-   Please note that the considerations in this section are focused
-   especially on the use cases described in Section 4.2, although other
-   use cases are mentioned for comparison and contrast.
-
-6.1.  Here Be Dragons
-
-   The discussion in Section 6 is less mature than in most other
-   sections of this document.  The good news is that this section is
-   fertile ground for people who would like to contribute to future
-   revisions of this document.  Comments are even more welcome for this
-   section than for the rest of the document, for which they are
-   welcome.  The authors suggest that high-level comments are most
-   appropriate at this time.
-
-6.2.  Codec Agility
-
-   When initiating a media session, both the sender and receiver will
-   need to agree on the codecs, bitrates, resolution, and other media
-   details based on capabilities and preferences.  This agreement needs
-   to take place before commencing media transmission, but might also
-   take place during media transmission, perhaps as a result of changes
-   to device output or network conditions (such as reduction in
-   available network bandwidth).
-
-   It may be prefered to use existing ecosystem for such purposes, e.g.
-   SDP [RFC4566].
-
-6.3.  Support an Appropriate Range of Latencies
-
-   Support for a nominal latency appropriate for the use cases that are
-   in scope should be achievable, with consideration for the minimum
-   buffer that a receiver playing content may need to handle congestion,
-   packet loss, and other degradation in network quality.
-
-6.4.  Migration of Sessions
-
-   Handling of migration of a session between hosts, either of sender or
-   receiver should be supported.  This may either happen because the
-   sender is undergoing maintenence or a rebalancing of resource,
-   because the either is experiencing a change in network connectivity
-   (such as a device moving from WiFi to cellular connectivity) or other
-   reasons.
-
-   This may depend on QUIC capabilities such as
-   [I-D.draft-ietf-quic-multipath] but support for full QUIC operation
-   over multiple paths between senders and receivers is by no means
-   essential.
-
-6.5.  Appropriate Congestion Control
-
-   An appropriate congestion control mechanism will depend upon the use
-   cases under consideration.
-
-   It's worth remembering that we have more experience with QUIC
-   carrying HTTP traffic than with any other type of application at this
-   time, and consequently, we have more experience with congestion
-   control mechanisms such as NewReno [RFC9002], Cubic [RFC8312], and
-   BBR [I-D.draft-cardwell-iccrg-bbr-congestion-control] being used with
-   QUIC than with any other congestion control mechanisms.  These
-   congestion control mechanisms may also be appropriate for the on-
-   demand use cases described in Section 4.3.
-
-   Conversely, for the interactive use cases described in Section 4.1,
-   these congestion control mechanisms are very likely inappropriate,
-   especially when QUIC is being used with a Media Transport Protocol
-   such as RTP, which provides its own congestion control mechanism, and
-   which does not seem to interact well with a second, QUIC-level
-   congestion control mechanism.  Congestion control mechanisms such as
-   SCReAM [RFC8298] or NADA [RFC8698] may be more appropriate for media.
-   "Congestion Control Requirements for Interactive Real-Time Media"
-   [RFC8836] is a useful reference.
-
-   Awkwardly, the live media use cases described in Section 4.2 live
-   somewhere in the middle, and work will be needed to understand the
-   characteristics of an appropriate congestion control mechanism for
-   these use cases.
-
-6.6.  Support Lossless and Lossy Media Transport
-
-   TODO: confirm scope of this draft to describe lossless media
-   transport, lossy media transport, or both lossless and lossy
-   transport.
-
-6.7.  Flow Directionality
-
-   Media should be able to flow in either direction from client to
-   server or vice-versa, either individually or concurrently but should
-   only be negotiated at the start of the session.
-
-6.8.  WebTransport
-
-   TODO: Unsure of the importance of this consideration for live media
-   use cases.  If this is critical, we have to consider two things:
-
-   *  WebTransport supports HTTP/2, are we going to explicitly exclude
-      it?
-   *  Also, WebTransport [I-D.draft-ietf-webtrans-overview] has
-      normative language around congestion control, which may be at odds
-      with the considerations described in Section 6.5.
-
-6.9.  Authentication
-
-   In order to allow hosts to authenticate one another, capabilities
-   beyond what QUIC provides may be necessary.  This should be kept
-   simple but robust in nature to prevent attacks like credential brute-
-   forcing.
-
-   TODO: More details are required here
-
-6.10.  Considerations Implying QUIC Extensions
-
-   Most of the discussion of protocol work in this document has avoided
-   mentioning capabilities that may be useful for some use cases, but
-   seem to imply the need for extensions to the QUIC protocol, beyond
-   what is already being considered in the IETF QUIC working group.
-   These are included in this section, for completeness' sake.
-
-6.10.1.  NAT Traversal
-
-   From Section 8.2 of [RFC9000]:
-
-      Path validation is not designed as a NAT traversal mechanism.
-      Though the mechanism described here might be effective for the
-      creation of NAT bindings that support NAT traversal, the
-      expectation is that one endpoint is able to receive packets
-      without first having sent a packet on that path.  Effective NAT
-      traversal needs additional synchronization mechanisms that are not
-      provided here.
-
-   Although there are use cases that would benefit from a mechanism for
-   NAT traversal, a QUIC protocol extention would be needed to support
-   those use cases.
-
-6.10.2.  Multicast
-
-   Even if multicast and other network broadcasting capabilities are
-   often used in delivering media in our use cases, QUIC doesn't yet
-   support multicast, and a QUIC protocol extension would be needed to
-   do so.  In addition, the inclusion of multicast would introduce more
-   complexity in both the specification and client implimentations.  On
-   the other hand, UDP multicast may be considered as the last mile
-   delivery transport outside of QUIC transport, thus it would be
-   beneficial for a protocol to provide such an opportunity (e.g.  RTP/
-   QUIC -> RTP/UDP).
+   TODO: Quite a lot, really ...
 
 7.  IANA Considerations
 
@@ -888,14 +699,6 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ietf-quic-
               http-34>.
 
-   [I-D.draft-ietf-quic-multipath]
-              Liu, Y., Ma, Y., Coninck, Q. D., Bonaventure, O., Huitema,
-              C., and M. Kuehlewind, "Multipath Extension for QUIC",
-              Work in Progress, Internet-Draft, draft-ietf-quic-
-              multipath-01, 7 March 2022,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-quic-
-              multipath-01>.
-
    [I-D.draft-ietf-webtrans-overview]
               Vasiliev, V., "The WebTransport Protocol Framework", Work
               in Progress, Internet-Draft, draft-ietf-webtrans-overview-
@@ -950,11 +753,6 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-sharabayko-
               srt-over-quic-00>.
 
-   [ISOBMFF]  "ISO/IEC 14496-12:2022 Information technology — Coding of
-              audio-visual objects — Part 12: ISO base media file
-              format", January 2022,
-              <https://www.iso.org/standard/83102.html>.
-
    [MOQ-ml]   "Moq -- Media over QUIC", n.d.,
               <https://www.ietf.org/mailman/listinfo/moq>.
 
@@ -966,10 +764,6 @@ Table of Contents
               Jacobson, "RTP: A Transport Protocol for Real-Time
               Applications", STD 64, RFC 3550, DOI 10.17487/RFC3550,
               July 2003, <https://www.rfc-editor.org/rfc/rfc3550>.
-
-   [RFC4566]  Handley, M., Jacobson, V., and C. Perkins, "SDP: Session
-              Description Protocol", RFC 4566, DOI 10.17487/RFC4566,
-              July 2006, <https://www.rfc-editor.org/rfc/rfc4566>.
 
    [RFC6363]  Watson, M., Begen, A., and V. Roca, "Forward Error
               Correction (FEC) Framework", RFC 6363,
@@ -999,34 +793,10 @@ Table of Contents
               RFC 8216, DOI 10.17487/RFC8216, August 2017,
               <https://www.rfc-editor.org/rfc/rfc8216>.
 
-   [RFC8298]  Johansson, I. and Z. Sarker, "Self-Clocked Rate Adaptation
-              for Multimedia", RFC 8298, DOI 10.17487/RFC8298, December
-              2017, <https://www.rfc-editor.org/rfc/rfc8298>.
-
-   [RFC8312]  Rhee, I., Xu, L., Ha, S., Zimmermann, A., Eggert, L., and
-              R. Scheffenegger, "CUBIC for Fast Long-Distance Networks",
-              RFC 8312, DOI 10.17487/RFC8312, February 2018,
-              <https://www.rfc-editor.org/rfc/rfc8312>.
-
-   [RFC8698]  Zhu, X., Pan, R., Ramalho, M., and S. Mena, "Network-
-              Assisted Dynamic Adaptation (NADA): A Unified Congestion
-              Control Scheme for Real-Time Media", RFC 8698,
-              DOI 10.17487/RFC8698, February 2020,
-              <https://www.rfc-editor.org/rfc/rfc8698>.
-
-   [RFC8836]  Jesup, R. and Z. Sarker, Ed., "Congestion Control
-              Requirements for Interactive Real-Time Media", RFC 8836,
-              DOI 10.17487/RFC8836, January 2021,
-              <https://www.rfc-editor.org/rfc/rfc8836>.
-
    [RFC9000]  Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
               Multiplexed and Secure Transport", RFC 9000,
               DOI 10.17487/RFC9000, May 2021,
               <https://www.rfc-editor.org/rfc/rfc9000>.
-
-   [RFC9002]  Iyengar, J., Ed. and I. Swett, Ed., "QUIC Loss Detection
-              and Congestion Control", RFC 9002, DOI 10.17487/RFC9002,
-              May 2021, <https://www.rfc-editor.org/rfc/rfc9002>.
 
    [WebRTC]   "Web Real-Time Communications Working Group", n.d.,
               <https://www.w3.org/groups/wg/webrtc>.
