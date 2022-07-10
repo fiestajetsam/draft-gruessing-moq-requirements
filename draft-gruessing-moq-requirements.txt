@@ -74,13 +74,7 @@ Table of Contents
      2.1.  The Many Meanings of "Media Over QUIC"
      2.2.  Latency Requirement Categories
    3.  Prior and Existing Specifications
-     3.1.  QRT: QUIC RTP Tunnelling
-     3.2.  RTP over QUIC
-     3.3.  RUSH - Reliable (unreliable) streaming protocol
-     3.4.  Tunnelling SRT over QUIC
-     3.5.  Warp - Segmented Live Video Transport
-     3.6.  QuicR
-     3.7.  Comparison of Existing Specifications
+     3.1.  Comparison of Existing Specifications
    4.  Use Cases Informing This Proposal
      4.1.  Interactive Media
        4.1.1.  Gaming
@@ -246,87 +240,11 @@ Table of Contents
 
    Several draft specifications have been proposed which either
    encapsulate existing Media Transport Protocols in QUIC, or define
-   their own new Media Transport Protocol on top of QUIC.  With the
-   exception of RUSH (Section 3.3), it is unknown if the other
-   specifications listed in this section have had any deployments or
-   interop with multiple implementations.
+   their own new Media Transport Protocol on top of QUIC.  Some have
+   already seen deployment into the wild (e.g.  [I-D.draft-kpugin-rush])
+   where as others are unconfirmed.
 
-3.1.  QRT: QUIC RTP Tunnelling
-
-   [I-D.draft-hurst-quic-rtp-tunnelling]
-
-   QRT encapsulates RTP and RTCP and define the means of using QUIC
-   datagrams with them, defining a new payload within a datagram frame
-   which distinguishes packets for a RTP packet flow vs RTCP.
-
-3.2.  RTP over QUIC
-
-   [I-D.draft-engelbart-rtp-over-quic]
-
-   This specification also encapsulates RTP and RTCP but unlike QRT
-   which simply relies on the default QUIC congestion control
-   mechanisms, it defines a set of requirements around QUIC
-   implementation's congestion controller to permit the use of separate
-   control algorithms.
-
-3.3.  RUSH - Reliable (unreliable) streaming protocol
-
-   [I-D.draft-kpugin-rush]
-
-   Whilst RUSH predates the datagram specification, it uses its own
-   frame types on top of QUIC to take advantage of QUIC implementations
-   reassembling messages greater than MTU.  In addition individual media
-   frames are given their own stream identifiers to remove HoL blocking
-   from processing out-of-order.
-
-   It defines its own registry for signalling codec information with
-   room for future expansion but presently is limited to a subset of
-   popular video and audio codecs and doesn't include other types (such
-   as subtitles, transcriptions, or other signalling information) out of
-   bitstream.
-
-3.4.  Tunnelling SRT over QUIC
-
-   [I-D.draft-sharabayko-srt-over-quic]
-
-   Secure Reliable Transport (SRT) ([I-D.draft-sharabayko-srt]) itself
-   is a general purpose transport protocol primarily for ingest
-   transport use cases and this specification covers the encapsulation
-   and delivery of SRT on top of QUIC using datagram frame types.  This
-   specification sets some requirements regarding how the two interact
-   and leaves considerations for congestion control and pacing to
-   prevent conflict between the two protocols.  Apart from that, SRT
-   provides a native suport for stream multiplexing, thus contributing
-   this missing functionality to QUIC datagrams.
-
-3.5.  Warp - Segmented Live Video Transport
-
-   [I-D.draft-lcurley-warp]
-
-   Warp's specification attemps to map Group of Picture encoding of
-   video on top of QUIC streams.  It depends on ISOBMFF containers to
-   encapsulate both media as well as messaging, and defines
-   prioritisation with separate considerations for audio and video.  It
-   doesn't yet define bi-directionality of media flows, and can be run
-   over protocols like WebTransport [I-D.draft-ietf-webtrans-overview].
-
-3.6.  QuicR
-
-   [I-D.draft-jennings-moq-quicr-proto]
-
-   QuicR comprisees of both an architectural document
-   [I-D.draft-jennings-moq-quicr-arch] as well as a protocol
-   specification.  QuicR's focus is around Pub/Sub patterns for both
-   client negotiation as well as relaying media and allows
-   implementations to use either streams or datagrams to carry media,
-   and whilst it does not yet appear to define a means of media
-   encapsulation, it does appear possible for QuicR to overlay support
-   for both Section 3.3 and Section 3.5.
-
-3.7.  Comparison of Existing Specifications
-
-   ** Additional details for this comparison could usefully be added
-   here. **
+3.1.  Comparison of Existing Specifications
 
    *  Some drafts attempt to use existing payloads of RTP, RTCP, and
       SDP, while others do not.
@@ -677,18 +595,6 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-cardwell-
               iccrg-bbr-congestion-control-02>.
 
-   [I-D.draft-engelbart-rtp-over-quic]
-              Ott, J. and M. Engelbart, "RTP over QUIC", Work in
-              Progress, Internet-Draft, draft-engelbart-rtp-over-quic-
-              04, 24 June 2022, <https://datatracker.ietf.org/doc/html/
-              draft-engelbart-rtp-over-quic-04>.
-
-   [I-D.draft-hurst-quic-rtp-tunnelling]
-              Hurst, S., "QRT: QUIC RTP Tunnelling", Work in Progress,
-              Internet-Draft, draft-hurst-quic-rtp-tunnelling-01, 28
-              January 2021, <https://datatracker.ietf.org/doc/html/
-              draft-hurst-quic-rtp-tunnelling-01>.
-
    [I-D.draft-ietf-mops-streaming-opcons]
               Holland, J., Begen, A., and S. Dawkins, "Operational
               Considerations for Streaming Media", Work in Progress,
@@ -715,20 +621,6 @@ Table of Contents
               03, 7 March 2022, <https://datatracker.ietf.org/doc/html/
               draft-ietf-webtrans-overview-03>.
 
-   [I-D.draft-jennings-moq-quicr-arch]
-              Jennings, C. and S. Nandakumar, "QuicR - Media Delivery
-              Protocol over QUIC", Work in Progress, Internet-Draft,
-              draft-jennings-moq-quicr-arch-00, 4 March 2022,
-              <https://datatracker.ietf.org/doc/html/draft-jennings-moq-
-              quicr-arch-00>.
-
-   [I-D.draft-jennings-moq-quicr-proto]
-              Jennings, C. and S. Nandakumar, "QuicR - Media Delivery
-              Protocol over QUIC", Work in Progress, Internet-Draft,
-              draft-jennings-moq-quicr-proto-00, 4 March 2022,
-              <https://datatracker.ietf.org/doc/html/draft-jennings-moq-
-              quicr-proto-00>.
-
    [I-D.draft-kpugin-rush]
               Pugin, K., Frindell, A., Cenzano, J., and J. Weissman,
               "RUSH - Reliable (unreliable) streaming protocol", Work in
@@ -736,32 +628,12 @@ Table of Contents
               2022, <https://datatracker.ietf.org/doc/html/draft-kpugin-
               rush-01>.
 
-   [I-D.draft-lcurley-warp]
-              Curley, L., "Warp - Segmented Live Media Transport", Work
-              in Progress, Internet-Draft, draft-lcurley-warp-01, 9 July
-              2022, <https://datatracker.ietf.org/doc/html/draft-
-              lcurley-warp-01>.
-
    [I-D.draft-rtpfolks-quic-rtp-over-quic]
               Ott, J., Even, R., Perkins, C., and V. Singh, "RTP over
               QUIC", Work in Progress, Internet-Draft, draft-rtpfolks-
               quic-rtp-over-quic-01, 1 September 2017,
               <https://datatracker.ietf.org/doc/html/draft-rtpfolks-
               quic-rtp-over-quic-01>.
-
-   [I-D.draft-sharabayko-srt]
-              Sharabayko, M., Sharabayko, M., Dube, J., Kim, J., and J.
-              Kim, "The SRT Protocol", Work in Progress, Internet-Draft,
-              draft-sharabayko-srt-01, 7 September 2021,
-              <https://datatracker.ietf.org/doc/html/draft-sharabayko-
-              srt-01>.
-
-   [I-D.draft-sharabayko-srt-over-quic]
-              Sharabayko, M. and M. Sharabayko, "Tunnelling SRT over
-              QUIC", Work in Progress, Internet-Draft, draft-sharabayko-
-              srt-over-quic-00, 28 July 2021,
-              <https://datatracker.ietf.org/doc/html/draft-sharabayko-
-              srt-over-quic-00>.
 
    [MOQ-ml]   "Moq -- Media over QUIC", n.d.,
               <https://www.ietf.org/mailman/listinfo/moq>.

@@ -1152,25 +1152,7 @@ mailing list, at <a href="https://www.ietf.org/mailman/listinfo/moq">https://www
             <p id="section-toc.1-1.3.1"><a href="#section-3" class="xref">3</a>.  <a href="#name-prior-and-existing-specific" class="xref">Prior and Existing Specifications</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
-                <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="xref">3.1</a>.  <a href="#name-qrt-quic-rtp-tunnelling" class="xref">QRT: QUIC RTP Tunnelling</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
-                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="xref">3.2</a>.  <a href="#name-rtp-over-quic" class="xref">RTP over QUIC</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
-                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="xref">3.3</a>.  <a href="#name-rush-reliable-unreliable-st" class="xref">RUSH - Reliable (unreliable) streaming protocol</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4">
-                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="xref">3.4</a>.  <a href="#name-tunnelling-srt-over-quic" class="xref">Tunnelling SRT over QUIC</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.5">
-                <p id="section-toc.1-1.3.2.5.1"><a href="#section-3.5" class="xref">3.5</a>.  <a href="#name-warp-segmented-live-video-t" class="xref">Warp - Segmented Live Video Transport</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.6">
-                <p id="section-toc.1-1.3.2.6.1"><a href="#section-3.6" class="xref">3.6</a>.  <a href="#name-quicr" class="xref">QuicR</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.7">
-                <p id="section-toc.1-1.3.2.7.1"><a href="#section-3.7" class="xref">3.7</a>.  <a href="#name-comparison-of-existing-spec" class="xref">Comparison of Existing Specifications</a></p>
+                <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="xref">3.1</a>.  <a href="#name-comparison-of-existing-spec" class="xref">Comparison of Existing Specifications</a></p>
 </li>
             </ul>
 </li>
@@ -1393,105 +1375,23 @@ mailing list, at <a href="https://www.ietf.org/mailman/listinfo/moq">https://www
       <h2 id="name-prior-and-existing-specific">
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-prior-and-existing-specific" class="section-name selfRef">Prior and Existing Specifications</a>
       </h2>
-<p id="section-3-1">Several draft specifications have been proposed which either encapsulate existing Media Transport Protocols in QUIC, or define
-their own new Media Transport Protocol on top of QUIC. With the exception of RUSH (<a href="#kpugin" class="xref">Section 3.3</a>), it is unknown if the other specifications listed in this section
-have had any deployments or interop with multiple implementations.<a href="#section-3-1" class="pilcrow">¶</a></p>
-<div id="hurst">
-<section id="section-3.1">
-        <h3 id="name-qrt-quic-rtp-tunnelling">
-<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-qrt-quic-rtp-tunnelling" class="section-name selfRef">QRT: QUIC RTP Tunnelling</a>
-        </h3>
-<p id="section-3.1-1"><span>[<a href="#I-D.draft-hurst-quic-rtp-tunnelling" class="xref">I-D.draft-hurst-quic-rtp-tunnelling</a>]</span><a href="#section-3.1-1" class="pilcrow">¶</a></p>
-<p id="section-3.1-2">QRT encapsulates RTP and RTCP and define the means of using QUIC datagrams
-with them, defining a new payload within a datagram frame which distinguishes
-packets for a RTP packet flow vs RTCP.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="englebart">
-<section id="section-3.2">
-        <h3 id="name-rtp-over-quic">
-<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-rtp-over-quic" class="section-name selfRef">RTP over QUIC</a>
-        </h3>
-<p id="section-3.2-1"><span>[<a href="#I-D.draft-engelbart-rtp-over-quic" class="xref">I-D.draft-engelbart-rtp-over-quic</a>]</span><a href="#section-3.2-1" class="pilcrow">¶</a></p>
-<p id="section-3.2-2">This specification also encapsulates RTP and RTCP but unlike QRT which simply
-relies on the default QUIC congestion control mechanisms, it defines a set of
-requirements around QUIC implementation's congestion controller to permit the
-use of separate control algorithms.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="kpugin">
-<section id="section-3.3">
-        <h3 id="name-rush-reliable-unreliable-st">
-<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-rush-reliable-unreliable-st" class="section-name selfRef">RUSH - Reliable (unreliable) streaming protocol</a>
-        </h3>
-<p id="section-3.3-1"><span>[<a href="#I-D.draft-kpugin-rush" class="xref">I-D.draft-kpugin-rush</a>]</span><a href="#section-3.3-1" class="pilcrow">¶</a></p>
-<p id="section-3.3-2">Whilst RUSH predates the datagram specification, it uses its own frame types on
-top of QUIC to take advantage of QUIC implementations reassembling messages
-greater than MTU. In addition individual media frames are given their own stream
-identifiers to remove HoL blocking from processing out-of-order.<a href="#section-3.3-2" class="pilcrow">¶</a></p>
-<p id="section-3.3-3">It defines its own registry for signalling codec information with room for
-future expansion but presently is limited to a subset of popular video and audio
-codecs and doesn't include other types (such as subtitles, transcriptions, or
-other signalling information) out of bitstream.<a href="#section-3.3-3" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="sharabayko">
-<section id="section-3.4">
-        <h3 id="name-tunnelling-srt-over-quic">
-<a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-tunnelling-srt-over-quic" class="section-name selfRef">Tunnelling SRT over QUIC</a>
-        </h3>
-<p id="section-3.4-1"><span>[<a href="#I-D.draft-sharabayko-srt-over-quic" class="xref">I-D.draft-sharabayko-srt-over-quic</a>]</span><a href="#section-3.4-1" class="pilcrow">¶</a></p>
-<p id="section-3.4-2">Secure Reliable Transport (SRT) (<span>[<a href="#I-D.draft-sharabayko-srt" class="xref">I-D.draft-sharabayko-srt</a>]</span>) itself is a general purpose transport protocol
-primarily for ingest transport use cases and this specification covers the
-encapsulation and delivery of SRT on top of QUIC using datagram frame types.
-This specification sets some requirements regarding how the two interact and
-leaves considerations for congestion control and pacing to prevent conflict
-between the two protocols. Apart from that, SRT provides a native suport for stream multiplexing,
-thus contributing this missing functionality to QUIC datagrams.<a href="#section-3.4-2" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="warp">
-<section id="section-3.5">
-        <h3 id="name-warp-segmented-live-video-t">
-<a href="#section-3.5" class="section-number selfRef">3.5. </a><a href="#name-warp-segmented-live-video-t" class="section-name selfRef">Warp - Segmented Live Video Transport</a>
-        </h3>
-<p id="section-3.5-1"><span>[<a href="#I-D.draft-lcurley-warp" class="xref">I-D.draft-lcurley-warp</a>]</span><a href="#section-3.5-1" class="pilcrow">¶</a></p>
-<p id="section-3.5-2">Warp's specification attemps to map Group of Picture encoding of video on top of
-QUIC streams. It depends on ISOBMFF containers to encapsulate both media as well
-as messaging, and defines prioritisation with separate considerations for audio
-and video. It doesn't yet define bi-directionality of media flows, and can be
-run over protocols like WebTransport <span>[<a href="#I-D.draft-ietf-webtrans-overview" class="xref">I-D.draft-ietf-webtrans-overview</a>]</span>.<a href="#section-3.5-2" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="quicr">
-<section id="section-3.6">
-        <h3 id="name-quicr">
-<a href="#section-3.6" class="section-number selfRef">3.6. </a><a href="#name-quicr" class="section-name selfRef">QuicR</a>
-        </h3>
-<p id="section-3.6-1"><span>[<a href="#I-D.draft-jennings-moq-quicr-proto" class="xref">I-D.draft-jennings-moq-quicr-proto</a>]</span><a href="#section-3.6-1" class="pilcrow">¶</a></p>
-<p id="section-3.6-2">QuicR comprisees of both an architectural document
-<span>[<a href="#I-D.draft-jennings-moq-quicr-arch" class="xref">I-D.draft-jennings-moq-quicr-arch</a>]</span> as well as a protocol specification.
-QuicR's focus is around Pub/Sub patterns for both client negotiation as well as
-relaying media and allows implementations to use either streams or datagrams to
-carry media, and whilst it does not yet appear to define a means of media
-encapsulation, it does appear possible for QuicR to overlay support for both
-<a href="#kpugin" class="xref">Section 3.3</a> and <a href="#warp" class="xref">Section 3.5</a>.<a href="#section-3.6-2" class="pilcrow">¶</a></p>
-</section>
-</div>
+<p id="section-3-1">Several draft specifications have been proposed which either encapsulate
+existing Media Transport Protocols in QUIC, or define their own new Media
+Transport Protocol on top of QUIC. Some have already seen deployment into the
+wild (e.g. <span>[<a href="#I-D.draft-kpugin-rush" class="xref">I-D.draft-kpugin-rush</a>]</span>) where as others are unconfirmed.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <div id="comparison-of-existing-specifications">
-<section id="section-3.7">
+<section id="section-3.1">
         <h3 id="name-comparison-of-existing-spec">
-<a href="#section-3.7" class="section-number selfRef">3.7. </a><a href="#name-comparison-of-existing-spec" class="section-name selfRef">Comparison of Existing Specifications</a>
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-comparison-of-existing-spec" class="section-name selfRef">Comparison of Existing Specifications</a>
         </h3>
-<p id="section-3.7-1">** Additional details for this comparison could usefully be added here. **<a href="#section-3.7-1" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="section-3.7-2.1">Some drafts attempt to use existing payloads of RTP, RTCP, and SDP, while others do not.<a href="#section-3.7-2.1" class="pilcrow">¶</a>
+<li class="compact" id="section-3.1-1.1">Some drafts attempt to use existing payloads of RTP, RTCP, and SDP, while others do not.<a href="#section-3.1-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="compact" id="section-3.7-2.2">Some use QUIC Datagram frames, while others use QUIC streams.<a href="#section-3.7-2.2" class="pilcrow">¶</a>
+          <li class="compact" id="section-3.1-1.2">Some use QUIC Datagram frames, while others use QUIC streams.<a href="#section-3.1-1.2" class="pilcrow">¶</a>
 </li>
-          <li class="compact" id="section-3.7-2.3">All drafts take differing approaches to flow/stream identification and management. Some address congestion control and others just defer this to QUIC to handle.<a href="#section-3.7-2.3" class="pilcrow">¶</a>
+          <li class="compact" id="section-3.1-1.3">All drafts take differing approaches to flow/stream identification and management. Some address congestion control and others just defer this to QUIC to handle.<a href="#section-3.1-1.3" class="pilcrow">¶</a>
 </li>
-          <li class="compact" id="section-3.7-2.4">Some drafts specify ALPN identification, while others do not.<a href="#section-3.7-2.4" class="pilcrow">¶</a>
+          <li class="compact" id="section-3.1-1.4">Some drafts specify ALPN identification, while others do not.<a href="#section-3.1-1.4" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
@@ -1981,14 +1881,6 @@ no security considerations of its own.<a href="#section-8-1" class="pilcrow">¶<
       <dd>
 <span class="refAuthor">Cardwell, N.</span>, <span class="refAuthor">Cheng, Y.</span>, <span class="refAuthor">Yeganeh, S. H.</span>, <span class="refAuthor">Swett, I.</span>, and <span class="refAuthor">V. Jacobson</span>, <span class="refTitle">"BBR Congestion Control"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-cardwell-iccrg-bbr-congestion-control-02</span>, <time datetime="2022-03-07" class="refDate">7 March 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-cardwell-iccrg-bbr-congestion-control-02">https://datatracker.ietf.org/doc/html/draft-cardwell-iccrg-bbr-congestion-control-02</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="I-D.draft-engelbart-rtp-over-quic">[I-D.draft-engelbart-rtp-over-quic]</dt>
-      <dd>
-<span class="refAuthor">Ott, J.</span> and <span class="refAuthor">M. Engelbart</span>, <span class="refTitle">"RTP over QUIC"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-engelbart-rtp-over-quic-04</span>, <time datetime="2022-06-24" class="refDate">24 June 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-engelbart-rtp-over-quic-04">https://datatracker.ietf.org/doc/html/draft-engelbart-rtp-over-quic-04</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="I-D.draft-hurst-quic-rtp-tunnelling">[I-D.draft-hurst-quic-rtp-tunnelling]</dt>
-      <dd>
-<span class="refAuthor">Hurst, S.</span>, <span class="refTitle">"QRT: QUIC RTP Tunnelling"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-hurst-quic-rtp-tunnelling-01</span>, <time datetime="2021-01-28" class="refDate">28 January 2021</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-hurst-quic-rtp-tunnelling-01">https://datatracker.ietf.org/doc/html/draft-hurst-quic-rtp-tunnelling-01</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="I-D.draft-ietf-mops-streaming-opcons">[I-D.draft-ietf-mops-streaming-opcons]</dt>
       <dd>
 <span class="refAuthor">Holland, J.</span>, <span class="refAuthor">Begen, A.</span>, and <span class="refAuthor">S. Dawkins</span>, <span class="refTitle">"Operational Considerations for Streaming Media"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-mops-streaming-opcons-10</span>, <time datetime="2022-04-21" class="refDate">21 April 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-mops-streaming-opcons-10">https://datatracker.ietf.org/doc/html/draft-ietf-mops-streaming-opcons-10</a>&gt;</span>. </dd>
@@ -2005,33 +1897,13 @@ no security considerations of its own.<a href="#section-8-1" class="pilcrow">¶<
       <dd>
 <span class="refAuthor">Vasiliev, V.</span>, <span class="refTitle">"The WebTransport Protocol Framework"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-webtrans-overview-03</span>, <time datetime="2022-03-07" class="refDate">7 March 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-webtrans-overview-03">https://datatracker.ietf.org/doc/html/draft-ietf-webtrans-overview-03</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="I-D.draft-jennings-moq-quicr-arch">[I-D.draft-jennings-moq-quicr-arch]</dt>
-      <dd>
-<span class="refAuthor">Jennings, C.</span> and <span class="refAuthor">S. Nandakumar</span>, <span class="refTitle">"QuicR - Media Delivery Protocol over QUIC"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-jennings-moq-quicr-arch-00</span>, <time datetime="2022-03-04" class="refDate">4 March 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-jennings-moq-quicr-arch-00">https://datatracker.ietf.org/doc/html/draft-jennings-moq-quicr-arch-00</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="I-D.draft-jennings-moq-quicr-proto">[I-D.draft-jennings-moq-quicr-proto]</dt>
-      <dd>
-<span class="refAuthor">Jennings, C.</span> and <span class="refAuthor">S. Nandakumar</span>, <span class="refTitle">"QuicR - Media Delivery Protocol over QUIC"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-jennings-moq-quicr-proto-00</span>, <time datetime="2022-03-04" class="refDate">4 March 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-jennings-moq-quicr-proto-00">https://datatracker.ietf.org/doc/html/draft-jennings-moq-quicr-proto-00</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="I-D.draft-kpugin-rush">[I-D.draft-kpugin-rush]</dt>
       <dd>
 <span class="refAuthor">Pugin, K.</span>, <span class="refAuthor">Frindell, A.</span>, <span class="refAuthor">Cenzano, J.</span>, and <span class="refAuthor">J. Weissman</span>, <span class="refTitle">"RUSH - Reliable (unreliable) streaming protocol"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-kpugin-rush-01</span>, <time datetime="2022-03-07" class="refDate">7 March 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-kpugin-rush-01">https://datatracker.ietf.org/doc/html/draft-kpugin-rush-01</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="I-D.draft-lcurley-warp">[I-D.draft-lcurley-warp]</dt>
-      <dd>
-<span class="refAuthor">Curley, L.</span>, <span class="refTitle">"Warp - Segmented Live Media Transport"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-lcurley-warp-01</span>, <time datetime="2022-07-09" class="refDate">9 July 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-lcurley-warp-01">https://datatracker.ietf.org/doc/html/draft-lcurley-warp-01</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="I-D.draft-rtpfolks-quic-rtp-over-quic">[I-D.draft-rtpfolks-quic-rtp-over-quic]</dt>
       <dd>
 <span class="refAuthor">Ott, J.</span>, <span class="refAuthor">Even, R.</span>, <span class="refAuthor">Perkins, C.</span>, and <span class="refAuthor">V. Singh</span>, <span class="refTitle">"RTP over QUIC"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-rtpfolks-quic-rtp-over-quic-01</span>, <time datetime="2017-09-01" class="refDate">1 September 2017</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-rtpfolks-quic-rtp-over-quic-01">https://datatracker.ietf.org/doc/html/draft-rtpfolks-quic-rtp-over-quic-01</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="I-D.draft-sharabayko-srt">[I-D.draft-sharabayko-srt]</dt>
-      <dd>
-<span class="refAuthor">Sharabayko, M.</span>, <span class="refAuthor">Sharabayko, M.</span>, <span class="refAuthor">Dube, J.</span>, <span class="refAuthor">Kim, J.</span>, and <span class="refAuthor">J. Kim</span>, <span class="refTitle">"The SRT Protocol"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-sharabayko-srt-01</span>, <time datetime="2021-09-07" class="refDate">7 September 2021</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-sharabayko-srt-01">https://datatracker.ietf.org/doc/html/draft-sharabayko-srt-01</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="I-D.draft-sharabayko-srt-over-quic">[I-D.draft-sharabayko-srt-over-quic]</dt>
-      <dd>
-<span class="refAuthor">Sharabayko, M.</span> and <span class="refAuthor">M. Sharabayko</span>, <span class="refTitle">"Tunnelling SRT over QUIC"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-sharabayko-srt-over-quic-00</span>, <time datetime="2021-07-28" class="refDate">28 July 2021</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-sharabayko-srt-over-quic-00">https://datatracker.ietf.org/doc/html/draft-sharabayko-srt-over-quic-00</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="MOQ-ml">[MOQ-ml]</dt>
       <dd>
