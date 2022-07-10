@@ -5,8 +5,8 @@
 MOQ Mailing List                                            J. Gruessing
 Internet-Draft                               Nederlandse Publieke Omroep
 Intended status: Informational                                S. Dawkins
-Expires: 2 January 2023                              Tencent America LLC
-                                                             1 July 2022
+Expires: 11 January 2023                             Tencent America LLC
+                                                            10 July 2022
 
 
     Media Over QUIC - Use Cases and Requirements for Media Transport
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 January 2023.
+   This Internet-Draft will expire on 11 January 2023.
 
 Copyright Notice
 
@@ -86,13 +86,14 @@ Table of Contents
        4.1.1.  Gaming
        4.1.2.  Remote Desktop
        4.1.3.  Video Conferencing/Telephony
-     4.2.  Live Media
-       4.2.1.  Live Media Ingest
-       4.2.2.  Live Media Syndication
-       4.2.3.  Live Media Streaming
-     4.3.  On-Demand Media
-       4.3.1.  On-Demand Ingest
-       4.3.2.  On-Demand Media Streaming
+     4.2.  Hybrid Interactive and Live Media
+     4.3.  Live Media
+       4.3.1.  Live Media Ingest
+       4.3.2.  Live Media Syndication
+       4.3.3.  Live Media Streaming
+     4.4.  On-Demand Media
+       4.4.1.  On-Demand Ingest
+       4.4.2.  On-Demand Media Streaming
    5.  Proposed Scope for "Media Over QUIC"
      5.1.  Analysis for Interactive Use Cases
      5.2.  Analysis for Live Media Use Cases
@@ -226,7 +227,7 @@ Table of Contents
    *  on-demand (hours or more)
 
    Because the IETF Media Over QUIC community now expresses interest in
-   interactive media Section 4.1 and live media Section 4.2} use cases
+   interactive media Section 4.1 and live media Section 4.3} use cases
    will have requirements that are significantly less than the
    "streaming media"-defined "ultra-low latency".
 
@@ -450,7 +451,16 @@ Table of Contents
    such as audio, but other media types in this use case have much more
    stringent latency targets.
 
-4.2.  Live Media
+4.2.  Hybrid Interactive and Live Media
+
+   For the video conferencing/telephony use case, there can be
+   additional scenarios where the audience greatly outnumbers the
+   concurrent active participants, but any member of the audience could
+   participate.  As this has a much larger total number of participants
+   - as many as Live Media Streaming Section 4.3.3, but with the bi-
+   directionality of confercing, this should be considered a "hybrid".
+
+4.3.  Live Media
 
    The use cases in this section, unlike the use cases described in
    Section 4.1, still have "humans in the loop", but these humans expect
@@ -465,7 +475,7 @@ Table of Contents
    video is being produced "live" and sent to a platform for syndication
    and distribution.
 
-4.2.1.  Live Media Ingest
+4.3.1.  Live Media Ingest
 
               +=====================+======================+
               | Attribute           | Value                |
@@ -485,7 +495,7 @@ Table of Contents
    by signalling of connection inforation (bandwidth, latency) based on
    data sent by the receiver.
 
-4.2.2.  Live Media Syndication
+4.3.2.  Live Media Syndication
 
               +=====================+======================+
               | Attribute           | Value                |
@@ -504,7 +514,7 @@ Table of Contents
    than source, but larger than final distribution output.  Streams may
    be redundant with failover mechanisms in place.
 
-4.2.3.  Live Media Streaming
+4.3.3.  Live Media Streaming
 
               +=====================+======================+
               | Attribute           | Value                |
@@ -528,7 +538,7 @@ Table of Contents
    player falls behind edge or because the viewer wishes to play back
    from a point in the past.
 
-4.3.  On-Demand Media
+4.4.  On-Demand Media
 
    Finally, the "On-Demand" use cases described in this section do not
    have a tight linkage between ingest and streaming, allowing
@@ -537,7 +547,7 @@ Table of Contents
    section may be dominated by the time required for whatever actions
    are required before media are available for streaming.
 
-4.3.1.  On-Demand Ingest
+4.4.1.  On-Demand Ingest
 
                    +=====================+=============+
                    | Attribute           | Value       |
@@ -557,7 +567,7 @@ Table of Contents
    this media is not immediately passed to viewers, but is stored for
    "on-demand" retrieval, and may be transcoded upon ingest.
 
-4.3.2.  On-Demand Media Streaming
+4.4.2.  On-Demand Media Streaming
 
                    +=====================+=============+
                    | Attribute           | Value       |
@@ -578,9 +588,9 @@ Table of Contents
 5.  Proposed Scope for "Media Over QUIC"
 
    Our proposal is that "Media Over QUIC" discussions focus first on the
-   use cases described in Section 4.2, which are Live Media Ingest
-   (Section 4.2.1), Syndication (Section 4.2.2), and Streaming
-   (Section 4.2.3).  Our reasoning for this suggestion follows.
+   use cases described in Section 4.3, which are Live Media Ingest
+   (Section 4.3.1), Syndication (Section 4.3.2), and Streaming
+   (Section 4.3.3).  Our reasoning for this suggestion follows.
 
    Each of the above use cases in Section 4 fit into one of three
    classifications of solutions.
@@ -599,9 +609,9 @@ Table of Contents
 
 5.2.  Analysis for Live Media Use Cases
 
-   The second group of classifications, in Section 4.2, covering Live
-   Media Ingest (Section 4.2.1), Live Media Syndication (Section 4.2.2),
-   and Live Media Streaming (Section 4.2.3) are likely the use cases
+   The second group of classifications, in Section 4.3, covering Live
+   Media Ingest (Section 4.3.1), Live Media Syndication (Section 4.3.2),
+   and Live Media Streaming (Section 4.3.3) are likely the use cases
    that will benefit most from this work.
 
    Existing ingest and streaming protocols such as HLS [RFC8216] and
@@ -615,8 +625,8 @@ Table of Contents
 
 5.3.  Analysis for On-Demand Use Cases
 
-   The third group, Section 4.3, covering On-Demand Media Ingest
-   (Section 4.3.1) and On-Demand Media streaming (Section 4.3.2) is
+   The third group, Section 4.4, covering On-Demand Media Ingest
+   (Section 4.4.1) and On-Demand Media streaming (Section 4.4.2) is
    unlikely to benefit from work in this space.  Without the same "Live
    Media" latency requirements that would motivate deployment of new
    protocols, existing protocols such as HLS and DASH are probably "good
@@ -727,10 +737,10 @@ Table of Contents
               rush-01>.
 
    [I-D.draft-lcurley-warp]
-              Curley, L., "Warp - Segmented Live Video Transport", Work
-              in Progress, Internet-Draft, draft-lcurley-warp-00, 9
-              February 2022, <https://datatracker.ietf.org/doc/html/
-              draft-lcurley-warp-00>.
+              Curley, L., "Warp - Segmented Live Media Transport", Work
+              in Progress, Internet-Draft, draft-lcurley-warp-01, 9 July
+              2022, <https://datatracker.ietf.org/doc/html/draft-
+              lcurley-warp-01>.
 
    [I-D.draft-rtpfolks-quic-rtp-over-quic]
               Ott, J., Even, R., Perkins, C., and V. Singh, "RTP over

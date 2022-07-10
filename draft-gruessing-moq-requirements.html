@@ -10,22 +10,22 @@
 <meta content='
        This document describes use cases that have been discussed in the IETF community under the banner of "Media Over QUIC", provides analysis about those use cases, recommends a subset of use cases that cover live media ingest, syndication, and streaming for further exploration, and describes requirements that should guide the design of protocols to satisfy these use cases. 
     ' name="description">
-<meta content="xml2rfc 3.12.10" name="generator">
+<meta content="xml2rfc 3.13.0" name="generator">
 <meta content="Internet-Draft QUIC" name="keyword">
 <meta content="draft-gruessing-moq-requirements-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.12.10
+  xml2rfc 3.13.0
     Python 3.10.4
     appdirs 1.4.4
     ConfigArgParse 1.5.3
-    google-i18n-address 2.5.1
+    google-i18n-address 2.5.2
     html5lib 1.1
     intervaltree 3.1.0
-    Jinja2 2.11.3
+    Jinja2 3.1.2
     kitchen 1.2.6
-    lxml 4.8.0
-    MarkupSafe 2.0.1
-    pycountry 20.7.3
+    lxml 4.9.1
+    MarkupSafe 2.1.1
+    pycountry 22.3.5
     pyflakes 2.4.0
     PyYAML 6.0
     requests 2.27.1
@@ -1031,7 +1031,7 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Gruessing &amp; Dawkins</td>
-<td class="center">Expires 2 January 2023</td>
+<td class="center">Expires 11 January 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1044,12 +1044,12 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-gruessing-moq-requirements-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2022-07-01" class="published">1 July 2022</time>
+<time datetime="2022-07-10" class="published">10 July 2022</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2023-01-02">2 January 2023</time></dd>
+<dd class="expires"><time datetime="2023-01-11">11 January 2023</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1097,7 +1097,7 @@ mailing list, at <a href="https://www.ietf.org/mailman/listinfo/moq">https://www
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 2 January 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 11 January 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1192,27 +1192,30 @@ mailing list, at <a href="https://www.ietf.org/mailman/listinfo/moq">https://www
                 </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
-                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="xref">4.2</a>.  <a href="#name-live-media" class="xref">Live Media</a></p>
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="xref">4.2</a>.  <a href="#name-hybrid-interactive-and-live" class="xref">Hybrid Interactive and Live Media</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
+                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="xref">4.3</a>.  <a href="#name-live-media" class="xref">Live Media</a></p>
 <ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.1">
-                    <p id="section-toc.1-1.4.2.2.2.1.1"><a href="#section-4.2.1" class="xref">4.2.1</a>.  <a href="#name-live-media-ingest" class="xref">Live Media Ingest</a></p>
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3.2.1">
+                    <p id="section-toc.1-1.4.2.3.2.1.1"><a href="#section-4.3.1" class="xref">4.3.1</a>.  <a href="#name-live-media-ingest" class="xref">Live Media Ingest</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.2">
-                    <p id="section-toc.1-1.4.2.2.2.2.1"><a href="#section-4.2.2" class="xref">4.2.2</a>.  <a href="#name-live-media-syndication" class="xref">Live Media Syndication</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3.2.2">
+                    <p id="section-toc.1-1.4.2.3.2.2.1"><a href="#section-4.3.2" class="xref">4.3.2</a>.  <a href="#name-live-media-syndication" class="xref">Live Media Syndication</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.3">
-                    <p id="section-toc.1-1.4.2.2.2.3.1"><a href="#section-4.2.3" class="xref">4.2.3</a>.  <a href="#name-live-media-streaming" class="xref">Live Media Streaming</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3.2.3">
+                    <p id="section-toc.1-1.4.2.3.2.3.1"><a href="#section-4.3.3" class="xref">4.3.3</a>.  <a href="#name-live-media-streaming" class="xref">Live Media Streaming</a></p>
 </li>
                 </ul>
 </li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
-                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="xref">4.3</a>.  <a href="#name-on-demand-media" class="xref">On-Demand Media</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.4">
+                <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="xref">4.4</a>.  <a href="#name-on-demand-media" class="xref">On-Demand Media</a></p>
 <ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3.2.1">
-                    <p id="section-toc.1-1.4.2.3.2.1.1"><a href="#section-4.3.1" class="xref">4.3.1</a>.  <a href="#name-on-demand-ingest" class="xref">On-Demand Ingest</a></p>
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.4.2.1">
+                    <p id="section-toc.1-1.4.2.4.2.1.1"><a href="#section-4.4.1" class="xref">4.4.1</a>.  <a href="#name-on-demand-ingest" class="xref">On-Demand Ingest</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3.2.2">
-                    <p id="section-toc.1-1.4.2.3.2.2.1"><a href="#section-4.3.2" class="xref">4.3.2</a>.  <a href="#name-on-demand-media-streaming" class="xref">On-Demand Media Streaming</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.4.2.2">
+                    <p id="section-toc.1-1.4.2.4.2.2.1"><a href="#section-4.4.2" class="xref">4.4.2</a>.  <a href="#name-on-demand-media-streaming" class="xref">On-Demand Media Streaming</a></p>
 </li>
                 </ul>
 </li>
@@ -1371,7 +1374,7 @@ mailing list, at <a href="https://www.ietf.org/mailman/listinfo/moq">https://www
           <li class="compact" id="section-2.2-2.4">on-demand (hours or more)<a href="#section-2.2-2.4" class="pilcrow">¶</a>
 </li>
         </ul>
-<p id="section-2.2-3">Because the IETF Media Over QUIC community now expresses interest in interactive media <a href="#interact" class="xref">Section 4.1</a> and live media <a href="#lm-media" class="xref">Section 4.2</a>} use cases will have requirements that are significantly less than the "streaming media"-defined "ultra-low latency".<a href="#section-2.2-3" class="pilcrow">¶</a></p>
+<p id="section-2.2-3">Because the IETF Media Over QUIC community now expresses interest in interactive media <a href="#interact" class="xref">Section 4.1</a> and live media <a href="#lm-media" class="xref">Section 4.3</a>} use cases will have requirements that are significantly less than the "streaming media"-defined "ultra-low latency".<a href="#section-2.2-3" class="pilcrow">¶</a></p>
 <p id="section-2.2-4">Within this document, we are using<a href="#section-2.2-4" class="pilcrow">¶</a></p>
 <ul class="compact">
 <li class="compact" id="section-2.2-5.1">near real-time (less than 50 ms)<a href="#section-2.2-5.1" class="pilcrow">¶</a>
@@ -1654,17 +1657,29 @@ more stringent latency targets.<a href="#section-4.1.3-2" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
-<div id="lm-media">
+<div id="hybrid-interactive-and-live-media">
 <section id="section-4.2">
-        <h3 id="name-live-media">
-<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-live-media" class="section-name selfRef">Live Media</a>
+        <h3 id="name-hybrid-interactive-and-live">
+<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-hybrid-interactive-and-live" class="section-name selfRef">Hybrid Interactive and Live Media</a>
         </h3>
-<p id="section-4.2-1">The use cases in this section, unlike the use cases described in <a href="#interact" class="xref">Section 4.1</a>, still have "humans in the loop", but these humans expect media to be "responsive", where the responsiveness is more on the order of 5 to 10 RTTs. This allows the use of protocol mechanisms that require more than one or two RTTs - as noted in <a href="#interact" class="xref">Section 4.1</a>, end-to-end recovery from packet loss and congestion avoidance are two such protocol mechanisms that can be used with Live Media.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
-<p id="section-4.2-2">To illustrate the difference, the responsiveness expected with videoconferencing is much greater than watching a video, even if the video is being produced "live" and sent to a platform for syndication and distribution.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
+<p id="section-4.2-1">For the video conferencing/telephony use case, there can be additional scenarios
+where the audience greatly outnumbers the concurrent active participants, but
+any member of the audience could participate. As this has a much larger total
+number of participants - as many as Live Media Streaming <a href="#lmstream" class="xref">Section 4.3.3</a>, but with
+the bi-directionality of confercing, this should be considered a "hybrid".<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="lm-media">
+<section id="section-4.3">
+        <h3 id="name-live-media">
+<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-live-media" class="section-name selfRef">Live Media</a>
+        </h3>
+<p id="section-4.3-1">The use cases in this section, unlike the use cases described in <a href="#interact" class="xref">Section 4.1</a>, still have "humans in the loop", but these humans expect media to be "responsive", where the responsiveness is more on the order of 5 to 10 RTTs. This allows the use of protocol mechanisms that require more than one or two RTTs - as noted in <a href="#interact" class="xref">Section 4.1</a>, end-to-end recovery from packet loss and congestion avoidance are two such protocol mechanisms that can be used with Live Media.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.3-2">To illustrate the difference, the responsiveness expected with videoconferencing is much greater than watching a video, even if the video is being produced "live" and sent to a platform for syndication and distribution.<a href="#section-4.3-2" class="pilcrow">¶</a></p>
 <div id="lmingest">
-<section id="section-4.2.1">
+<section id="section-4.3.1">
           <h4 id="name-live-media-ingest">
-<a href="#section-4.2.1" class="section-number selfRef">4.2.1. </a><a href="#name-live-media-ingest" class="section-name selfRef">Live Media Ingest</a>
+<a href="#section-4.3.1" class="section-number selfRef">4.3.1. </a><a href="#name-live-media-ingest" class="section-name selfRef">Live Media Ingest</a>
           </h4>
 <table class="center" id="table-4">
             <caption><a href="#table-4" class="selfRef">Table 4</a></caption>
@@ -1695,16 +1710,16 @@ more stringent latency targets.<a href="#section-4.1.3-2" class="pilcrow">¶</a>
               </tr>
             </tbody>
           </table>
-<p id="section-4.2.1-2">Where media is received from a source for onwards handling into a distribution
+<p id="section-4.3.1-2">Where media is received from a source for onwards handling into a distribution
 platform. The media may comprise of multiple audio and/or video sources.
 Bitrates may either be static or set dynamically by signalling of connection
-inforation (bandwidth, latency) based on data sent by the receiver.<a href="#section-4.2.1-2" class="pilcrow">¶</a></p>
+inforation (bandwidth, latency) based on data sent by the receiver.<a href="#section-4.3.1-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="lmsynd">
-<section id="section-4.2.2">
+<section id="section-4.3.2">
           <h4 id="name-live-media-syndication">
-<a href="#section-4.2.2" class="section-number selfRef">4.2.2. </a><a href="#name-live-media-syndication" class="section-name selfRef">Live Media Syndication</a>
+<a href="#section-4.3.2" class="section-number selfRef">4.3.2. </a><a href="#name-live-media-syndication" class="section-name selfRef">Live Media Syndication</a>
           </h4>
 <table class="center" id="table-5">
             <caption><a href="#table-5" class="selfRef">Table 5</a></caption>
@@ -1735,16 +1750,16 @@ inforation (bandwidth, latency) based on data sent by the receiver.<a href="#sec
               </tr>
             </tbody>
           </table>
-<p id="section-4.2.2-2">Where media is sent onwards to another platform for further distribution. The
+<p id="section-4.3.2-2">Where media is sent onwards to another platform for further distribution. The
 media may be compressed down to a bitrate lower than source, but larger than
 final distribution output. Streams may be redundant with failover mechanisms in
-place.<a href="#section-4.2.2-2" class="pilcrow">¶</a></p>
+place.<a href="#section-4.3.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="lmstream">
-<section id="section-4.2.3">
+<section id="section-4.3.3">
           <h4 id="name-live-media-streaming">
-<a href="#section-4.2.3" class="section-number selfRef">4.2.3. </a><a href="#name-live-media-streaming" class="section-name selfRef">Live Media Streaming</a>
+<a href="#section-4.3.3" class="section-number selfRef">4.3.3. </a><a href="#name-live-media-streaming" class="section-name selfRef">Live Media Streaming</a>
           </h4>
 <table class="center" id="table-6">
             <caption><a href="#table-6" class="selfRef">Table 6</a></caption>
@@ -1775,28 +1790,28 @@ place.<a href="#section-4.2.2-2" class="pilcrow">¶</a></p>
               </tr>
             </tbody>
           </table>
-<p id="section-4.2.3-2">Where media is received from a live broadcast or stream. This may comprise of
+<p id="section-4.3.3-2">Where media is received from a live broadcast or stream. This may comprise of
 multiple audio or video outputs with different codecs or bitrates. This may also
 include other types of media essence such as subtitles or timing signalling
 information (e.g. markers to indicate change of behaviour in client such as
 advertisement breaks). The use of "live rewind" where a window of media behind
 the live edge can be made available for clients to playback, either because the
 local player falls behind edge or because the viewer wishes to play back from a
-point in the past.<a href="#section-4.2.3-2" class="pilcrow">¶</a></p>
+point in the past.<a href="#section-4.3.3-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="od-media">
-<section id="section-4.3">
+<section id="section-4.4">
         <h3 id="name-on-demand-media">
-<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-on-demand-media" class="section-name selfRef">On-Demand Media</a>
+<a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-on-demand-media" class="section-name selfRef">On-Demand Media</a>
         </h3>
-<p id="section-4.3-1">Finally, the "On-Demand" use cases described in this section do not have a tight linkage between ingest and streaming, allowing significant transcoding, processing, insertion of video clips in a news article, etc. The latency constraints for the use cases in this section may be dominated by the time required for whatever actions are required before media are available for streaming.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.4-1">Finally, the "On-Demand" use cases described in this section do not have a tight linkage between ingest and streaming, allowing significant transcoding, processing, insertion of video clips in a news article, etc. The latency constraints for the use cases in this section may be dominated by the time required for whatever actions are required before media are available for streaming.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
 <div id="od-ingest">
-<section id="section-4.3.1">
+<section id="section-4.4.1">
           <h4 id="name-on-demand-ingest">
-<a href="#section-4.3.1" class="section-number selfRef">4.3.1. </a><a href="#name-on-demand-ingest" class="section-name selfRef">On-Demand Ingest</a>
+<a href="#section-4.4.1" class="section-number selfRef">4.4.1. </a><a href="#name-on-demand-ingest" class="section-name selfRef">On-Demand Ingest</a>
           </h4>
 <table class="center" id="table-7">
             <caption><a href="#table-7" class="selfRef">Table 7</a></caption>
@@ -1827,14 +1842,14 @@ point in the past.<a href="#section-4.2.3-2" class="pilcrow">¶</a></p>
               </tr>
             </tbody>
           </table>
-<p id="section-4.3.1-2">Where media is ingested and processed for a system to later serve it to clients
-as on-demand media. This media provided from a pre-recorded source, or captured from live output, but in either case, this media is not immediately passed to viewers, but is stored for "on-demand" retrieval, and may be transcoded upon ingest.<a href="#section-4.3.1-2" class="pilcrow">¶</a></p>
+<p id="section-4.4.1-2">Where media is ingested and processed for a system to later serve it to clients
+as on-demand media. This media provided from a pre-recorded source, or captured from live output, but in either case, this media is not immediately passed to viewers, but is stored for "on-demand" retrieval, and may be transcoded upon ingest.<a href="#section-4.4.1-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="od-stream">
-<section id="section-4.3.2">
+<section id="section-4.4.2">
           <h4 id="name-on-demand-media-streaming">
-<a href="#section-4.3.2" class="section-number selfRef">4.3.2. </a><a href="#name-on-demand-media-streaming" class="section-name selfRef">On-Demand Media Streaming</a>
+<a href="#section-4.4.2" class="section-number selfRef">4.4.2. </a><a href="#name-on-demand-media-streaming" class="section-name selfRef">On-Demand Media Streaming</a>
           </h4>
 <table class="center" id="table-8">
             <caption><a href="#table-8" class="selfRef">Table 8</a></caption>
@@ -1865,9 +1880,9 @@ as on-demand media. This media provided from a pre-recorded source, or captured 
               </tr>
             </tbody>
           </table>
-<p id="section-4.3.2-2">Where media is received from a non-live, typically pre-recorded source. This may
+<p id="section-4.4.2-2">Where media is received from a non-live, typically pre-recorded source. This may
 feature additional outputs, bitrates, codecs, and media types described in the
-live media streaming use case.<a href="#section-4.3.2-2" class="pilcrow">¶</a></p>
+live media streaming use case.<a href="#section-4.4.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1879,8 +1894,8 @@ live media streaming use case.<a href="#section-4.3.2-2" class="pilcrow">¶</a><
       <h2 id="name-proposed-scope-for-media-ov">
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-proposed-scope-for-media-ov" class="section-name selfRef">Proposed Scope for "Media Over QUIC"</a>
       </h2>
-<p id="section-5-1">Our proposal is that "Media Over QUIC" discussions focus first on the use cases described in <a href="#lm-media" class="xref">Section 4.2</a>, which are Live Media Ingest (<a href="#lmingest" class="xref">Section 4.2.1</a>),
-Syndication (<a href="#lmsynd" class="xref">Section 4.2.2</a>), and Streaming (<a href="#lmstream" class="xref">Section 4.2.3</a>). Our reasoning for this suggestion follows.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-1">Our proposal is that "Media Over QUIC" discussions focus first on the use cases described in <a href="#lm-media" class="xref">Section 4.3</a>, which are Live Media Ingest (<a href="#lmingest" class="xref">Section 4.3.1</a>),
+Syndication (<a href="#lmsynd" class="xref">Section 4.3.2</a>), and Streaming (<a href="#lmstream" class="xref">Section 4.3.3</a>). Our reasoning for this suggestion follows.<a href="#section-5-1" class="pilcrow">¶</a></p>
 <p id="section-5-2">Each of the above use cases in <a href="#overallusecases" class="xref">Section 4</a> fit into one of three classifications of solutions.<a href="#section-5-2" class="pilcrow">¶</a></p>
 <div id="analy-interact">
 <section id="section-5.1">
@@ -1900,8 +1915,8 @@ protocols and specifications.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
         <h3 id="name-analysis-for-live-media-use">
 <a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-analysis-for-live-media-use" class="section-name selfRef">Analysis for Live Media Use Cases</a>
         </h3>
-<p id="section-5.2-1">The second group of classifications, in <a href="#lm-media" class="xref">Section 4.2</a>, covering Live Media Ingest (<a href="#lmingest" class="xref">Section 4.2.1</a>),
-Live Media Syndication (<a href="#lmsynd" class="xref">Section 4.2.2</a>), and Live Media Streaming (<a href="#lmstream" class="xref">Section 4.2.3</a>) are likely the use cases that will benefit most from
+<p id="section-5.2-1">The second group of classifications, in <a href="#lm-media" class="xref">Section 4.3</a>, covering Live Media Ingest (<a href="#lmingest" class="xref">Section 4.3.1</a>),
+Live Media Syndication (<a href="#lmsynd" class="xref">Section 4.3.2</a>), and Live Media Streaming (<a href="#lmstream" class="xref">Section 4.3.3</a>) are likely the use cases that will benefit most from
 this work.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
 <p id="section-5.2-2">Existing ingest and streaming protocols such as HLS <span>[<a href="#RFC8216" class="xref">RFC8216</a>]</span> and DASH <span>[<a href="#DASH" class="xref">DASH</a>]</span>
 are reaching limits towards how low they can reduce latency in live streaming
@@ -1915,7 +1930,7 @@ amount of overhead compared to the media bitstream itself.<a href="#section-5.2-
         <h3 id="name-analysis-for-on-demand-use-">
 <a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-analysis-for-on-demand-use-" class="section-name selfRef">Analysis for On-Demand Use Cases</a>
         </h3>
-<p id="section-5.3-1">The third group, <a href="#od-media" class="xref">Section 4.3</a>, covering On-Demand Media Ingest (<a href="#od-ingest" class="xref">Section 4.3.1</a>) and On-Demand Media streaming (<a href="#od-stream" class="xref">Section 4.3.2</a>) is unlikely to benefit from work in
+<p id="section-5.3-1">The third group, <a href="#od-media" class="xref">Section 4.4</a>, covering On-Demand Media Ingest (<a href="#od-ingest" class="xref">Section 4.4.1</a>) and On-Demand Media streaming (<a href="#od-stream" class="xref">Section 4.4.2</a>) is unlikely to benefit from work in
 this space. Without the same "Live Media" latency requirements that would motivate deployment of new protocols, existing protocols such as HLS and
 DASH are probably "good enough" to meet the needs of these use cases.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
 <p id="section-5.3-2">This does not mean that existing protocols in this space are perfect. Segmented protocols such as HLS and DASH were developed to overcome the deficiencies of TCP, as used in HTTP/1.1 <span>[<a href="#RFC7230" class="xref">RFC7230</a>]</span> and HTTP/2 <span>[<a href="#RFC7540" class="xref">RFC7540</a>]</span>, and do not make full use of the possible congestion window along the path from sender to receiver. Other protocols in this space have their own deficiencies. For example, RTSP <span>[<a href="#RFC7826" class="xref">RFC7826</a>]</span> does not have easy ways to add support for new media codecs.<a href="#section-5.3-2" class="pilcrow">¶</a></p>
@@ -2004,7 +2019,7 @@ no security considerations of its own.<a href="#section-8-1" class="pilcrow">¶<
 <dd class="break"></dd>
 <dt id="I-D.draft-lcurley-warp">[I-D.draft-lcurley-warp]</dt>
       <dd>
-<span class="refAuthor">Curley, L.</span>, <span class="refTitle">"Warp - Segmented Live Video Transport"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-lcurley-warp-00</span>, <time datetime="2022-02-09" class="refDate">9 February 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-lcurley-warp-00">https://datatracker.ietf.org/doc/html/draft-lcurley-warp-00</a>&gt;</span>. </dd>
+<span class="refAuthor">Curley, L.</span>, <span class="refTitle">"Warp - Segmented Live Media Transport"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-lcurley-warp-01</span>, <time datetime="2022-07-09" class="refDate">9 July 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-lcurley-warp-01">https://datatracker.ietf.org/doc/html/draft-lcurley-warp-01</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.draft-rtpfolks-quic-rtp-over-quic">[I-D.draft-rtpfolks-quic-rtp-over-quic]</dt>
       <dd>
