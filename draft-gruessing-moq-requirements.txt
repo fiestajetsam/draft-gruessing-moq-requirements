@@ -5,8 +5,8 @@
 MOQ Mailing List                                            J. Gruessing
 Internet-Draft                               Nederlandse Publieke Omroep
 Intended status: Informational                                S. Dawkins
-Expires: 11 January 2023                             Tencent America LLC
-                                                            10 July 2022
+Expires: 12 January 2023                             Tencent America LLC
+                                                            11 July 2022
 
 
     Media Over QUIC - Use Cases and Requirements for Media Transport
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 January 2023.
+   This Internet-Draft will expire on 12 January 2023.
 
 Copyright Notice
 
@@ -239,15 +239,18 @@ Table of Contents
 3.  Prior and Existing Specifications
 
    Several draft specifications have been proposed which either
-   encapsulate existing Media Transport Protocols in QUIC, or define
-   their own new Media Transport Protocol on top of QUIC.  Some have
-   already seen deployment into the wild (e.g.  [I-D.draft-kpugin-rush])
-   where as others are unconfirmed.
+   encapsulate existing Media Transport Protocols in QUIC
+   ([I-D.draft-sharabayko-srt-over-quic]), make use of RTP, RTCP, and
+   SDP ([I-D.draft-engelbart-rtp-over-quic]) or define their own new
+   Media Transport Protocol on top of QUIC.  Some have already seen
+   deployment into the wild (e.g.  [I-D.draft-kpugin-rush],
+   [I-D.draft-lcurley-warp]) where as others are unconfirmed.  Whilst
+   most just focus on defining wire format,
+   [I-D.draft-jennings-moq-quicr-arch] defines an architecture using a
+   pub/sub model for both producers and consumers.
 
 3.1.  Comparison of Existing Specifications
 
-   *  Some drafts attempt to use existing payloads of RTP, RTCP, and
-      SDP, while others do not.
    *  Some use QUIC Datagram frames, while others use QUIC streams.
    *  All drafts take differing approaches to flow/stream identification
       and management.  Some address congestion control and others just
@@ -595,6 +598,12 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-cardwell-
               iccrg-bbr-congestion-control-02>.
 
+   [I-D.draft-engelbart-rtp-over-quic]
+              Ott, J. and M. Engelbart, "RTP over QUIC", Work in
+              Progress, Internet-Draft, draft-engelbart-rtp-over-quic-
+              04, 24 June 2022, <https://datatracker.ietf.org/doc/html/
+              draft-engelbart-rtp-over-quic-04>.
+
    [I-D.draft-ietf-mops-streaming-opcons]
               Holland, J., Begen, A., and S. Dawkins, "Operational
               Considerations for Streaming Media", Work in Progress,
@@ -621,6 +630,13 @@ Table of Contents
               03, 7 March 2022, <https://datatracker.ietf.org/doc/html/
               draft-ietf-webtrans-overview-03>.
 
+   [I-D.draft-jennings-moq-quicr-arch]
+              Jennings, C. and S. Nandakumar, "QuicR - Media Delivery
+              Protocol over QUIC", Work in Progress, Internet-Draft,
+              draft-jennings-moq-quicr-arch-01, 11 July 2022,
+              <https://datatracker.ietf.org/doc/html/draft-jennings-moq-
+              quicr-arch-01>.
+
    [I-D.draft-kpugin-rush]
               Pugin, K., Frindell, A., Cenzano, J., and J. Weissman,
               "RUSH - Reliable (unreliable) streaming protocol", Work in
@@ -628,12 +644,25 @@ Table of Contents
               2022, <https://datatracker.ietf.org/doc/html/draft-kpugin-
               rush-01>.
 
+   [I-D.draft-lcurley-warp]
+              Curley, L., "Warp - Segmented Live Media Transport", Work
+              in Progress, Internet-Draft, draft-lcurley-warp-01, 9 July
+              2022, <https://datatracker.ietf.org/doc/html/draft-
+              lcurley-warp-01>.
+
    [I-D.draft-rtpfolks-quic-rtp-over-quic]
               Ott, J., Even, R., Perkins, C., and V. Singh, "RTP over
               QUIC", Work in Progress, Internet-Draft, draft-rtpfolks-
               quic-rtp-over-quic-01, 1 September 2017,
               <https://datatracker.ietf.org/doc/html/draft-rtpfolks-
               quic-rtp-over-quic-01>.
+
+   [I-D.draft-sharabayko-srt-over-quic]
+              Sharabayko, M. and M. Sharabayko, "Tunnelling SRT over
+              QUIC", Work in Progress, Internet-Draft, draft-sharabayko-
+              srt-over-quic-00, 28 July 2021,
+              <https://datatracker.ietf.org/doc/html/draft-sharabayko-
+              srt-over-quic-00>.
 
    [MOQ-ml]   "Moq -- Media over QUIC", n.d.,
               <https://www.ietf.org/mailman/listinfo/moq>.
@@ -686,22 +715,8 @@ Table of Contents
 Appendix A.  Acknowledgements
 
    The authors would like to thank the many authors of the
-   specifications referenced in Section 3 for their work:
-
-   *  Alan Frindell
-   *  Colin Perkins
-   *  Jake Weissman
-   *  Joerg Ott
-   *  Jordi Cenzano
-   *  Kirill Pugin
-   *  Maria Sharabayko
-   *  Mathis Engelbart
-   *  Maxim Sharabayko
-   *  Roni Even
-   *  Sam Hurst
-   *  Varun Singh
-
-   The authors would like to thank Alan Frindell, Luke Curley, and Maxim
+   specifications referenced in Section 3 for their work.  The authors
+   would also like to thank Alan Frindell, Luke Curley, and Maxim
    Sharabayko for text contributions to this draft.
 
    James Gruessing would also like to thank Francesco Illy and Nicholas
